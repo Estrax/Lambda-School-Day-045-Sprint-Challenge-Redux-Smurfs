@@ -14,7 +14,7 @@ class App extends Component {
       <div className="App">
         <h1>SMURFS! 2.0 W/ Redux</h1>
         <SmurfsList smurfs={this.props.smurfs} />
-        <SmurfForm smurf={{name: undefined, age: undefined, height: undefined}} />
+        <SmurfForm smurf={{name: undefined, age: undefined, height: undefined}} update={false} finishEditingSmurf={undefined} />
       </div>
     );
   }
@@ -26,6 +26,7 @@ const mapStateToProps = (state) => {
     smurfsFetched: state.smurfsFetched,
     smurfAdd: state.smurfAdd,
     smurfAdded: state.smurfAdded,
+    smurfEdit: state.smurfEdit,
     smurfUpdate: state.smurfUpdate,
     smurfUpdated: state.smurfUpdated,
     smurfDelete: state.smurfDelete,

@@ -56,7 +56,7 @@ export default (state = initialState, action) => {
     case SMURF_UPDATE:
       return {
         ...state,
-        smurfUpdate: true
+        smurfUpdate: true,
       }
     
     case SMURF_UPDATE_SUCCESS:
