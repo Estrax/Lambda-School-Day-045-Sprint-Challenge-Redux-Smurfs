@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const ERROR = 'ERROR';
 export const SMURFS_FETCH = 'SMURFS_FETCH';
 export const SMURFS_FETCH_SUCCESS = 'SMURFS_FETCH_SUCCESS';
@@ -18,3 +20,20 @@ export const SMURF_DELETE_SUCCESS = 'SMURFS_DELETE_SUCCESS';
    U - updateSmurf
    D - deleteSmurf
 */
+
+export const getSmurfs = () => {
+  return dispatch => {
+    dispatch({ type: SMURFS_FETCH })
+
+    axios
+      .get('http://localhost:3333/smurfs')
+      .then(res => dispatch({
+        type: SMURFS_FETCH_SUCCESS,
+        payload: res.data
+      }))
+      .catch(err => dispatch({
+        type: ERROR,
+        payload: err
+      }));
+  }
+}
