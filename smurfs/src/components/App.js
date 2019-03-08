@@ -5,17 +5,49 @@ import { getSmurfs } from '../actions';
 import SmurfsList from './SmurfsList';
 import SmurfForm from './SmurfForm';
 
+import styled from 'styled-components';
+
+const AppDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const AppTitle = styled.h1`
+  color: blue;
+  text-align: center;
+`;
+
+const Divider = styled.div`
+  width: 100vw;
+  height: 50px;
+`;
+
+const NewSmurf = styled.div`
+  align-self: center;
+  max-width: 250px;
+`;
+
+const NewSmurfTitle = styled.h2`
+  text-align: center;
+`;
+
 class App extends Component {
   componentDidMount() {
     this.props.getSmurfs();
   }
   render() {
     return (
-      <div className="App">
-        <h1>SMURFS! 2.0 W/ Redux</h1>
+      <AppDiv>
+        <AppTitle>SMURFS Village! 2.0 w/ Redux</AppTitle>
         <SmurfsList smurfs={this.props.smurfs} />
-        <SmurfForm smurf={{name: undefined, age: undefined, height: undefined}} update={false} finishEditingSmurf={undefined} />
-      </div>
+        <Divider/>
+        <NewSmurf>
+          <NewSmurfTitle>Add New Smurf</NewSmurfTitle>
+          <SmurfForm smurf={{name: undefined, age: undefined, height: undefined}} update={false} finishEditingSmurf={undefined} />
+        </NewSmurf>
+        <Divider/>
+      </AppDiv>
     );
   }
 }

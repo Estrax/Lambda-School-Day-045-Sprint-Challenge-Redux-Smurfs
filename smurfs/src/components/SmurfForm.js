@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addSmurf, updateSmurf } from '../actions';
+import styled from 'styled-components';
+
+const SingleSmurfForm = styled.form`
+    width: 100%;
+    max-width: 200px;
+`;
+
+const SingleSmurfFormInput = styled.input`
+    width: 100%;
+    margin: 10px 0;
+`;
 
 class SmurfForm extends Component {
     constructor(props) {
@@ -70,22 +81,25 @@ class SmurfForm extends Component {
 
     render() {
         return (
-            <form>
-                <input
+            <SingleSmurfForm onSubmit={e => e.preventDefault()}>
+                Name:
+                <SingleSmurfFormInput
                     type='text'
                     name='name'
                     placeholder='Name'
                     value={this.state.name}
                     onChange={this.handleInput}
                 />
-                <input
+                Age:
+                <SingleSmurfFormInput
                     type='text'
                     name='age'
                     placeholder='Age'
                     value={this.state.age}
                     onChange={this.handleInput}
                 />
-                <input
+                Height:
+                <SingleSmurfFormInput
                     type='text'
                     name='height'
                     placeholder='Height'
@@ -94,7 +108,7 @@ class SmurfForm extends Component {
                 />
                 
                 {!this.props.update &&
-                    <input
+                    <SingleSmurfFormInput
                         type="submit"
                         onClick={this.addSmurf}
                         value="Add smurf"
@@ -102,13 +116,13 @@ class SmurfForm extends Component {
                 }
                 
                 {this.props.update &&
-                    <input
+                    <SingleSmurfFormInput
                         type="submit"
                         onClick={this.updateSmurf}
                         value="Update smurf"
                     />
                 }
-            </form>
+            </SingleSmurfForm>
         );
     }
 }

@@ -2,6 +2,37 @@ import React, { Component } from 'react';
 import { deleteSmurf } from '../actions';
 import { connect } from 'react-redux';
 import SmurfForm from './SmurfForm';
+import styled from 'styled-components';
+
+const SingleSmurf = styled.div`
+    background: white;
+    width: 200px;
+    height: 200px;
+    font-weight: 100;
+    border: 8px solid cyan;
+    padding: 10px;
+    display: inline-block;
+    position: relative;
+    margin: 20px 0;
+`;
+
+const SmurfBtnLeft = styled.button`
+    background: blue;
+    color: white;
+    width: 50%;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+`;
+
+const SmurfBtnRight = styled.button`
+    background: blue;
+    color: white;
+    width: 50%;
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+`;
 
 class Smurf extends Component {
     constructor(props) {
@@ -30,20 +61,20 @@ class Smurf extends Component {
 
     render() {
         return (
-            <div className="smurf-item">
+            <SingleSmurf>
                 {!this.state.editSmurf &&
                     <div>
-                        <h1>Name: {this.props.name}</h1>
+                        <h3>Name: {this.props.name}</h3>
                         <p>Age: {this.props.age}</p>
                         <p>Height: {this.props.height}</p>
-                        <button onClick={() => this.editSmurf()}>Edit</button>
-                        <button onClick={() => this.props.deleteSmurf(this.props.id)}>Delete</button>
+                        <SmurfBtnLeft onClick={() => this.editSmurf()}>Edit</SmurfBtnLeft>
+                        <SmurfBtnRight onClick={() => this.props.deleteSmurf(this.props.id)}>Delete</SmurfBtnRight>
                     </div>
                 }
                 {this.state.editSmurf &&
                     <SmurfForm smurf={{id: this.props.id, name: this.props.name, age: this.props.age, height: this.props.height}} update={true} finishEditingSmurf={this.finishEditingSmurf} />
                 }
-            </div>
+            </SingleSmurf>
         );
     }
 }
