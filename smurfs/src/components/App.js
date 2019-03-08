@@ -3,6 +3,7 @@ import './App.css';
 import { connect } from 'react-redux';
 import { getSmurfs } from '../actions';
 import SmurfsList from './SmurfsList';
+import SmurfForm from './SmurfForm';
 
 class App extends Component {
   componentDidMount() {
@@ -13,6 +14,7 @@ class App extends Component {
       <div className="App">
         <h1>SMURFS! 2.0 W/ Redux</h1>
         <SmurfsList smurfs={this.props.smurfs} />
+        <SmurfForm smurf={{name: undefined, age: undefined, height: undefined}} />
       </div>
     );
   }

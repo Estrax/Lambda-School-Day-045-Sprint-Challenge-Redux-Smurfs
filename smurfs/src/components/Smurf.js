@@ -6,8 +6,10 @@ const Smurf = (props) => {
     return (
         <div className="smurf-item">
             <h1>Name: {props.name}</h1>
-            <p>Age: {props.height}</p>
+            <p>Age: {props.age}</p>
             <p>Height: {props.height}</p>
+            <button>Edit</button>
+            <button onClick={() => props.deleteSmurf(props.id)}>Delete</button>
         </div>
     );
 }

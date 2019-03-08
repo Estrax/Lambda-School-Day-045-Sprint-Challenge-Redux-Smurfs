@@ -8,7 +8,7 @@ class SmurfsList extends Component {
     render() {
         return (
             <div className="smurfs-list">
-                {this.props.smurfs.map((smurf, i) => <Smurf key={i} id={i} name={smurf.name} age={smurf.age} height={smurf.height} />)}
+                {this.props.smurfs.map(smurf => <Smurf key={smurf.id} id={smurf.id} name={smurf.name} age={smurf.age} height={smurf.height} />)}
             </div>
         );
     }
