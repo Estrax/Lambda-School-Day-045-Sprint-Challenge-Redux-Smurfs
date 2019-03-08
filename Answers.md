@@ -18,7 +18,7 @@ Reducers are functions living in the `store` - they fetch state from store and r
 
 Store is the place keeping track of state of all application.
 
-Redux store is a single source of truth because of the one-directional data flow. State cannot be modified any other way than by reducers that get the info from executed actions. Store keeps track of the state of our application and because of that it solves some of the problems with child components being able to update parents components, as well as the ones with multiple or duplicating states within the application that cause a lot of issues on scale.
+Redux store is a single source of truth because of the one-directional data flow and immutability. State cannot be modified any other way than by reducers that get the info from executed actions. Store keeps track of the state of our application and because of that it solves some of the problems with child components being able to update parents components, as well as the ones with multiple or duplicating states within the application that cause a lot of issues on scale.
 
 3.  What is the difference between Application state and Component state? When would be a good time to use one over the other?
 
@@ -26,7 +26,7 @@ Component state is local, so it is only linked to one component. On the other ha
 
 4.  What is middleware?
 
-Middleware is a set of functions providing the ability to extend and execute actions - for example, we can add an additional step between actions and reducers.
+Middleware is a set of functions acting as a bridge between points. It provides the ability to extend and execute actions - for example, we can add an additional step between actions and reducers to check whether the user is logged in.
 
 5.  Describe `redux-thunk`, what does it allow us to do? How does it change our `action-creators`?
 
