@@ -16,7 +16,6 @@ const SingleSmurfFormInput = styled.input`
 class SmurfForm extends Component {
     constructor(props) {
         super(props);
-        console.log(this.props);
         this.state = {
             name: '',
             age: '',
