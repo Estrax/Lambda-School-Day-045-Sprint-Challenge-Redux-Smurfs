@@ -37,3 +37,57 @@ export const getSmurfs = () => {
       }));
   }
 }
+
+
+export const addSmurf = (smurf) => {
+  return dispatch => {
+    dispatch({ type: SMURF_ADD })
+
+    axios
+      .post('http://localhost:3333/smurfs', smurf)
+      .then(res => dispatch({
+        type: SMURF_ADD_SUCCESS,
+        payload: res.data
+      }))
+      .catch(err => dispatch({
+        type: ERROR,
+        payload: err
+      }));
+  }
+}
+
+
+export const updateSmurf = (smurf) => {
+  return dispatch => {
+    dispatch({ type: SMURF_UPDATE })
+
+    axios
+      .put(`http://localhost:3333/smurfs/${smurf.id}`, smurf)
+      .then(res => dispatch({
+        type: SMURF_UPDATE_SUCCESS,
+        payload: res.data
+      }))
+      .catch(err => dispatch({
+        type: ERROR,
+        payload: err
+      }));
+  }
+}
+
+
+export const deleteSmurf = (id) => {
+  return dispatch => {
+    dispatch({ type: SMURF_DELETE })
+
+    axios
+      .delete(`http://localhost:3333/smurfs/${id}`)
+      .then(res => dispatch({
+        type: SMURF_DELETE_SUCCESS,
+        payload: res.data
+      }))
+      .catch(err => dispatch({
+        type: ERROR,
+        payload: err
+      }));
+  }
+}
