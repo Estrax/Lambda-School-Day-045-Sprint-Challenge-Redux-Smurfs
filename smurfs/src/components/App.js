@@ -1,22 +1,74 @@
 import React, { Component } from 'react';
-import './App.css';
-/*
- to wire this component up you're going to need a few things.
- I'll let you do this part on your own. 
- Just remember, `how do I `connect` my components to redux?`
- `How do I ensure that my component links the state to props?`
- */
+import { connect } from 'react-redux';
+import { getSmurfs } from '../actions';
+import SmurfsList from './SmurfsList';
+import SmurfForm from './SmurfForm';
+
+import styled from 'styled-components';
+
+const AppDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const AppTitle = styled.h1`
+  color: blue;
+  text-align: center;
+`;
+
+const Divider = styled.div`
+  width: 100vw;
+  height: 50px;
+`;
+
+const NewSmurf = styled.div`
+  align-self: center;
+  max-width: 250px;
+`;
+
+const NewSmurfTitle = styled.h2`
+  text-align: center;
+`;
+
 class App extends Component {
+  componentDidMount() {
+    this.props.getSmurfs();
+  }
   render() {
     return (
-      <div className="App">
-        <h1>SMURFS! 2.0 W/ Redux</h1>
-        <div>Welcome to your Redux version of Smurfs!</div>
-        <div>Start inside of your `src/index.js` file!</div>
-        <div>Have fun!</div>
-      </div>
+      <AppDiv>
+        <AppTitle>SMURFS Village! 2.0 w/ Redux</AppTitle>
+        <SmurfsList smurfs={this.props.smurfs} />
+        <Divider/>
+        <NewSmurf>
+          <NewSmurfTitle>Add New Smurf</NewSmurfTitle>
+          <SmurfForm smurf={{name: undefined, age: undefined, height: undefined}} update={false} finishEditingSmurf={undefined} />
+        </NewSmurf>
+        <Divider/>
+      </AppDiv>
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    smurfsFetching: state.smurfsFetching,
+    smurfsFetched: state.smurfsFetched,
+    smurfAdd: state.smurfAdd,
+    smurfAdded: state.smurfAdded,
+    smurfEdit: state.smurfEdit,
+    smurfUpdate: state.smurfUpdate,
+    smurfUpdated: state.smurfUpdated,
+    smurfDelete: state.smurfDelete,
+    smurfDeleted: state.smurfDeleted,
+    error: state.error,
+    smurfs: state.smurfs
+  }
+}
+
+const mapDispatchToProps = {
+  getSmurfs
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
